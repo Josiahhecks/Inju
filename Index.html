@@ -8,7 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
         body {
-            background: radial-gradient(circle, #0a0a0a 30%, #000000 90%);
+            background: black;
             color: white;
             font-family: 'Orbitron', sans-serif;
             text-align: center;
@@ -19,11 +19,28 @@
             align-items: center;
             flex-direction: column;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* Background animation */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 1) 60%);
+            animation: pulse 6s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.2); opacity: 0.8; }
         }
 
         h1 {
             font-size: 4rem;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
             margin-bottom: 50px;
         }
 
@@ -38,7 +55,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: rgba(0, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
             font-size: 1rem;
             font-weight: bold;
@@ -47,15 +64,34 @@
             justify-content: center;
             text-decoration: none;
             margin: 20px;
-            border: 2px solid rgba(0, 255, 255, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.5);
             transition: 0.3s ease-in-out;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
         }
 
         .button:hover {
-            background: rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 1);
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
             transform: scale(1.1);
+        }
+
+        /* Click effect */
+        .button:active::after {
+            content: "";
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 60%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ripple 0.5s ease-out;
+        }
+
+        @keyframes ripple {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
         }
 
         .logo {
@@ -63,6 +99,7 @@
             height: 100px;
             margin-bottom: 20px;
             animation: float 3s infinite ease-in-out;
+            filter: invert(1);
         }
 
         @keyframes float {
@@ -74,7 +111,7 @@
 </head>
 <body>
 
-    <img class="logo" src="https://via.placeholder.com/100" alt="INJU Logo">
+    <img class="logo" src="https://en.m.wikipedia.org/wiki/File:Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png" alt="INJU Logo">
     <h1>INJU</h1>
 
     <div class="container">
