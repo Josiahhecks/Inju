@@ -5,142 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INJU</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-        /* Body & Background */
+        /* Background and Global Styling */
         body {
-            background: black;
+            background-color: black;
             color: white;
             font-family: 'Orbitron', sans-serif;
             text-align: center;
-            margin: 0;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            height: 100vh;
+            margin: 0;
             overflow: hidden;
-            position: relative;
         }
 
         /* Animated Background */
         body::before {
             content: "";
             position: absolute;
-            width: 400%;
-            height: 400%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, black 80%);
-            animation: pulse 6s infinite alternate ease-in-out;
-            z-index: -1;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: moveBackground 10s linear infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.2); opacity: 0.8; }
+        @keyframes moveBackground {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(-55%, -55%); }
         }
 
-        /* Title */
-        h1 {
-            font-size: 5rem;
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-            transition: 0.5s;
-        }
-
-        h1:hover {
-            text-shadow: 0 0 50px rgba(255, 255, 255, 1);
-        }
-
-        /* Circular Layout */
-        .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 40px;
+        /* Centered Content */
+        .content {
             position: relative;
             width: 400px;
             height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            width: 100px;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: invert(1);
+        }
+
+        /* Title */
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            position: absolute;
+            bottom: 50px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         /* Buttons (Circles) */
         .button {
-            width: 120px;
-            height: 120px;
+            position: absolute;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
             transition: 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
         }
 
+        /* Hover & Click Effect */
         .button:hover {
             background: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
             transform: scale(1.1);
         }
 
-        /* Click Effect */
-        .button:active::after {
-            content: "";
-            position: absolute;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: ripple 0.4s ease-out;
+        .button:active {
+            transform: scale(0.9);
         }
 
-        @keyframes ripple {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
-        }
+        /* Positioning the Buttons in a Circle */
+        .youtube { top: 10%; left: 50%; transform: translateX(-50%); }
+        .discord { top: 35%; right: 10%; }
+        .autohar { bottom: 10%; right: 10%; }
+        .refresher { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .troubleshoot { bottom: 10%; left: 10%; }
 
-        /* Floating Center Logo */
-        .logo {
-            width: 120px;
-            height: 120px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            filter: invert(1);
-            animation: float 3s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) translateY(0px); }
-            50% { transform: translate(-50%, -50%) translateY(10px); }
-            100% { transform: translate(-50%, -50%) translateY(0px); }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Logo -->
-    <img class="logo" src="https://via.placeholder.com/120" alt="INJU Logo">
-    
-    <!-- Title -->
-    <h1>INJU</h1>
+    <div class="content">
+        <!-- Logo -->
+        <img class="logo" src="https://via.placeholder.com/100" alt="INJU Logo">
 
-    <!-- Circular Layout -->
-    <div class="container">
-        <a href="#" class="button" style="grid-column: 2; grid-row: 1;">YOUTUBE</a>
-        <a href="#" class="button" style="grid-column: 3; grid-row: 2;">DISCORD</a>
-        <a href="#" class="button" style="grid-column: 3; grid-row: 3;">AUTOHAR</a>
-        <a href="#" class="button" style="grid-column: 2; grid-row: 4;">REFRESHER</a>
-        <a href="#" class="button" style="grid-column: 1; grid-row: 3;">TROUBLESHOOT</a>
-        <a href="#" class="button" style="grid-column: 1; grid-row: 2;">SUPPORT</a>
+        <!-- Title -->
+        <div class="title">INJU</div>
+
+        <!-- Circular Buttons -->
+        <a href="#" class="button youtube">YOUTUBE</a>
+        <a href="#" class="button discord">DISCORD</a>
+        <a href="#" class="button autohar">AUTOHAR</a>
+        <a href="#" class="button refresher">REFRESHER</a>
+        <a href="#" class="button troubleshoot">TROUBLESHOOT</a>
     </div>
 
 </body>
