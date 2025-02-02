@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INJU</title>
+    <title>INJU - Ultimate UI</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-        /* Background and Global Styling */
+        /* Fullscreen Black Background */
         body {
             background-color: black;
             color: white;
@@ -21,23 +21,38 @@
             overflow: hidden;
         }
 
-        /* Animated Background */
+        /* Animated Background Effect */
         body::before {
             content: "";
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: moveBackground 10s linear infinite;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            animation: moveBackground 10s infinite linear;
         }
 
         @keyframes moveBackground {
-            0% { transform: translate(-50%, -50%); }
-            100% { transform: translate(-55%, -55%); }
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* Centered Content */
-        .content {
+        /* Glowing Title */
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+            position: absolute;
+            bottom: 70px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); }
+            100% { text-shadow: 0 0 30px rgba(255, 255, 255, 1); }
+        }
+
+        /* Container for Circles */
+        .container {
             position: relative;
             width: 400px;
             height: 400px;
@@ -46,30 +61,11 @@
             align-items: center;
         }
 
-        /* Logo */
-        .logo {
-            width: 100px;
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            filter: invert(1);
-        }
-
-        /* Title */
-        .title {
-            font-size: 3rem;
-            font-weight: bold;
-            position: absolute;
-            bottom: 50px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        /* Buttons (Circles) */
+        /* Circular Buttons */
         .button {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             color: white;
@@ -79,45 +75,46 @@
             justify-content: center;
             text-decoration: none;
             border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-            transition: 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transition: 0.3s ease-in-out, transform 0.2s;
+            backdrop-filter: blur(5px);
         }
 
-        /* Hover & Click Effect */
+        /* Glowing Effect on Hover */
         .button:hover {
             background: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 1);
             transform: scale(1.1);
         }
 
+        /* Click Ripple Effect */
         .button:active {
             transform: scale(0.9);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 1);
         }
 
-        /* Positioning the Buttons in a Circle */
-        .youtube { top: 10%; left: 50%; transform: translateX(-50%); }
-        .discord { top: 35%; right: 10%; }
-        .autohar { bottom: 10%; right: 10%; }
-        .refresher { bottom: 0; left: 50%; transform: translateX(-50%); }
-        .troubleshoot { bottom: 10%; left: 10%; }
+        /* Positioning in a Circular Layout */
+        .button:nth-child(1) { top: 5%; left: 50%; transform: translateX(-50%); } /* Top */
+        .button:nth-child(2) { top: 35%; right: 5%; } /* Right Top */
+        .button:nth-child(3) { bottom: 10%; right: 5%; } /* Right Bottom */
+        .button:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); } /* Bottom */
+        .button:nth-child(5) { bottom: 10%; left: 5%; } /* Left Bottom */
+        .button:nth-child(6) { top: 35%; left: 5%; } /* Left Top */
 
     </style>
 </head>
 <body>
 
-    <div class="content">
-        <!-- Logo -->
-        <img class="logo" src="https://via.placeholder.com/100" alt="INJU Logo">
-
+    <div class="container">
         <!-- Title -->
         <div class="title">INJU</div>
 
         <!-- Circular Buttons -->
-        <a href="#" class="button youtube">YOUTUBE</a>
-        <a href="#" class="button discord">DISCORD</a>
-        <a href="#" class="button autohar">AUTOHAR</a>
-        <a href="#" class="button refresher">REFRESHER</a>
-        <a href="#" class="button troubleshoot">TROUBLESHOOT</a>
+        <a href="#" class="button">YOUTUBE</a>
+        <a href="#" class="button">DISCORD</a>
+        <a href="#" class="button">AUTOHAR</a>
+        <a href="#" class="button">REFRESHER</a>
+        <a href="#" class="button">TROUBLESHOOT</a>
     </div>
 
 </body>
