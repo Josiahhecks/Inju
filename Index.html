@@ -1,108 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INJU - Clean UI</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INJU UI</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    /* Body and Background */
+    body {
+      background-color: white;
+      color: black;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        /* Background Styling */
-        body {
-            background: linear-gradient(135deg, #ffffff, #e0e0e0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    /* Animated Background */
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 10%, transparent 10.01%);
+      background-size: 20px 20px;
+      animation: moveBackground 20s linear infinite;
+    }
 
-        /* Centered Main Container */
-        .container {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    @keyframes moveBackground {
+      from {
+        transform: translateY(0) translateX(0);
+      }
+      to {
+        transform: translateY(-100%) translateX(-100%);
+      }
+    }
 
-        /* Main Title */
-        .title {
-            position: absolute;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-            transition: 0.3s ease-in-out;
-        }
+    /* Container */
+    .container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
 
-        .title:hover {
-            transform: scale(1.1);
-            color: #555;
-        }
+    /* Central Title */
+    .title {
+      font-size: 64px;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: absolute;
+      animation: float 4s ease-in-out infinite;
+      z-index: 1;
+    }
 
-        /* Circular Buttons */
-        .button {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: white;
-            color: #333;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-weight: bold;
-            border: 3px solid #ccc;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-            transition: 0.3s ease-in-out, transform 0.2s;
-        }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
 
-        /* Button Hover & Click Effects */
-        .button:hover {
-            background: #f0f0f0;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transform: scale(1.1);
-        }
+    /* Buttons */
+    .buttons {
+      position: absolute;
+      width: 450px; /* Increased to accommodate larger buttons */
+      height: 450px; /* Increased to accommodate larger buttons */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(0deg);
+    }
 
-        .button:active {
-            transform: scale(0.9);
-            box-shadow: none;
-        }
+    .button {
+      position: absolute;
+      width: 100px; /* Increased button size */
+      height: 100px; /* Increased button size */
+      border: 2px solid black;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      background-color: white;
+      color: black;
+      z-index: 2;
+    }
 
-        /* Circular Layout */
-        .button:nth-child(2) { top: 5%; left: 50%; transform: translateX(-50%); } /* Top */
-        .button:nth-child(3) { top: 30%; right: 5%; } /* Right Top */
-        .button:nth-child(4) { bottom: 15%; right: 5%; } /* Right Bottom */
-        .button:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); } /* Bottom */
-        .button:nth-child(6) { bottom: 15%; left: 5%; } /* Left Bottom */
-        .button:nth-child(7) { top: 30%; left: 5%; } /* Left Top */
+    .button:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      background-color: black;
+      color: white;
+    }
 
-    </style>
+    .button:active {
+      transform: scale(0.9);
+    }
+
+    /* Tooltip for Button Usage */
+    .tooltip {
+      position: absolute;
+      top: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .button:hover .tooltip {
+      opacity: 1;
+    }
+
+    /* Glow Effect for Title */
+    .title::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 10%, transparent 50%);
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* Connecting Lines */
+    .lines {
+      position: absolute;
+      width: 450px; /* Increased to match button container */
+      height: 450px; /* Increased to match button container */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(0deg);
+    }
+
+    .line {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, black, transparent);
+      transform-origin: bottom;
+      animation: rotateLines 10s linear infinite;
+    }
+
+    @keyframes rotateLines {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Particle Effects */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: black;
+      border-radius: 50%;
+      animation: floatParticle 5s ease-in-out infinite;
+    }
+
+    @keyframes floatParticle {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-20px) translateX(20px);
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        <!-- Title -->
-        <div class="title">INJU</div>
-
-        <!-- Circular Buttons -->
-        <a href="#" class="button">YOUTUBE</a>
-        <a href="#" class="button">DISCORD</a>
-        <a href="#" class="button">AUTOHAR</a>
-        <a href="#" class="button">REFRESHER</a>
-        <a href="#" class="button">TROUBLESHOOT</a>
+  <div class="background"></div>
+  <div class="particles">
+    <!-- Particles are dynamically generated via JavaScript -->
+  </div>
+  <div class="container">
+    <div class="title">INJU</div>
+    <div class="lines">
+      <div class="line" style="transform: rotate(0deg);"></div>
+      <div class="line" style="transform: rotate(60deg);"></div>
+      <div class="line" style="transform: rotate(120deg);"></div>
+      <div class="line" style="transform: rotate(180deg);"></div>
+      <div class="line" style="transform: rotate(240deg);"></div>
+      <div class="line" style="transform: rotate(300deg);"></div>
     </div>
+    <div class="buttons">
+      <div class="button" style="transform: rotate(0deg) translate(225px) rotate(0deg);">
+        YOUTUBE
+        <div class="tooltip">Watch tutorials and videos</div>
+      </div>
+      <div class="button" style="transform: rotate(60deg) translate(225px) rotate(-60deg);">
+        DISCORD
+        <div class="tooltip">Join the community</div>
+      </div>
+      <div class="button" style="transform: rotate(120deg) translate(225px) rotate(-120deg);">
+        AUTOHAR
+        <div class="tooltip">scam victims</div>
+      </div>
+      <div class="button" style="transform: rotate(180deg) translate(225px) rotate(-180deg);">
+        REFRESHER
+        <div class="tooltip">Refresh your knowledge</div>
+      </div>
+      <div class="button" style="transform: rotate(240deg) translate(225px) rotate(-240deg);">
+        TROUBLESHOOT
+        <div class="tooltip">Fix issues and bugs</div>
+      </div>
+      <div class="button" style="transform: rotate(300deg) translate(225px) rotate(-300deg);">
+        INJU.CC
+        <div class="tooltip">Visit the official website</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Add click effects to buttons
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        button.style.transform = `${button.style.transform} scale(0.9)`;
+        setTimeout(() => {
+          button.style.transform = button.style.transform.replace(' scale(0.9)', '');
+        }, 200);
+      });
+    });
 
+    // Generate particles
+    const particlesContainer = document.querySelector('.particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      particlesContainer.appendChild(particle);
+    }
+  </script>
 </body>
 </html>
